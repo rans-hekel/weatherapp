@@ -23,14 +23,26 @@
 <script setup>
 import { ref } from 'vue';
 import axios from 'axios';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 const searchQuery = ref('');
 const searchError = ref(null);
 const queryTimeout = ref(null);
 const mapboxSearchResults = ref(null);
 const mapboxAPIKey =
-  "Your apikey";
+  "Your api key here";
 
+
+
+const previewCity = (searchResult) => {
+  const [city, state] = searchResult.place_name.split(',');
+  router.push({
+    name: 'cityView',
+    params: { state: state.replaceAll(' ', ''), city: city },
+    query: { lat: searchResult.geometry.coordinates[1], lng: searchResult.geometry.coordinates[0], preview: true },
+  })
+}
 
 const getSearchResults = () => {
   clearTimeout(queryTimeout.value);
