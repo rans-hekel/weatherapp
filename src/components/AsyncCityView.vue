@@ -2,7 +2,7 @@
 <div class="flex flex-col flex-1 items-center text-white">
     <!-- banner start -->
     <div v-if="route.query.preview" class="text-white p-4 bg-weather-accent w-full text-center">
-    <p>Disclaimer! Semua suhu Cuaca yang ada adalah Fahrenheit.
+    <p>Kota ini sekarang dipreview dengan fitur favoritmu 
     </p>
     </div>
     <!-- banner end -->
@@ -22,7 +22,7 @@
         }}
         {{
           new Date(weatherData.currentTime).toLocaleTimeString(
-            "en-us",
+            "id-ID",
             {
               timeStyle: "short",
             }
@@ -30,14 +30,11 @@
         }}
       </p>
       <p class="text-8xl mb-8">
-        {{ Math.round(weatherData.current.temp) }}&deg;
+        {{ FahrenheitToCelsius(Math.round(weatherData.current.temp)) }}&deg;
       </p>
       <p>
         Terasa Seperti
-        {{ Math.round(weatherData.current.feels_like) }} &deg;
-      </p>
-      <p class="capitalize">
-        {{ weatherData.current.weather[0].description }}
+        {{ FahrenheitToCelsius(Math.round(weatherData.current.feels_like)) }}&deg;
       </p>
       <img
         class="w-[150px] h-auto"
@@ -79,7 +76,7 @@
               alt=""
             />
             <p class="text-xl">
-              {{ Math.round(hourData.temp) }}&deg;
+              {{ FahrenheitToCelsius(hourData.temp) }}&deg;
             </p>
           </div>
         </div>
@@ -111,11 +108,12 @@
             :src="
               `http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`
             "
-            alt=""
+            alt="example"
           />
           <div class="flex gap-2 flex-1 justify-end">
-            <p>Tertinggi: {{ Math.round(day.temp.max) }}</p>
-            <p>Terendah: {{ Math.round(day.temp.min) }}</p>
+            <p>Tertinggi: {{ FahrenheitToCelsius(Math.round(day.temp.max)) }} <span class="text-sm">°C</span>
+            </p>
+            <p>Terendah: {{ FahrenheitToCelsius(Math.round(day.temp.min)) }} <span class="text-sm">°C</span> </p>
           </div>
         </div>
       </div>
@@ -133,7 +131,9 @@
 import axios from 'axios';
 import { useRoute } from 'vue-router';
 
-
+const FahrenheitToCelsius = (temp) => {
+  return (((temp - 32) * 5) / 9).toFixed(0);
+}
 const route = useRoute();
 
 const getWeatherData = async () => {
