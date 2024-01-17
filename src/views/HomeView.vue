@@ -14,6 +14,14 @@
         </p>
     <li v-for="searchResult in mapboxSearchResults" :key="searchResult.id" class="py-2 cursor-pointer" @click="previewCity(searchResult)">{{ searchResult.place_name }}</li></ul>
   </div>
+  <div class="flex flex-col gap-4">
+    <Suspense>
+      <CityList />
+      <template #fallback>
+        <div>Loading...</div>
+      </template>
+    </Suspense>
+  </div>
 </main>
 
 </template>
@@ -24,6 +32,7 @@
 import { ref } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
+import CityList from '@/components/CityList.vue';
 
 const router = useRouter();
 const searchQuery = ref('');
@@ -31,7 +40,7 @@ const searchError = ref(null);
 const queryTimeout = ref(null);
 const mapboxSearchResults = ref(null);
 const mapboxAPIKey =
-  "Your api key here";
+  "Your Api Key Here";
 
 
 
