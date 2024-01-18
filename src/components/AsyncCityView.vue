@@ -38,7 +38,7 @@
         {{ FahrenheitToCelsius(Math.round(weatherData.current.temp)) }}&deg;
       </p>
       <p>
-        Berawan
+        Terasa Seperti
         {{ FahrenheitToCelsius(Math.round(weatherData.current.feels_like)) }}&deg;
       </p>
       <img

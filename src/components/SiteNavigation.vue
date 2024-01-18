@@ -16,8 +16,7 @@
             <div class="text-black">
           <h1 class="text-2xl mb-1">Tentang :</h1>
           <p class="mb-4">
-            Ini Adalah aplikasi yang berfungsi untuk mengetahui
-            cuaca di kota tertentu
+            Aplikasi sederhana ini dibuat oleh Rangga-kun, sebagai Latihan.
           </p>
           <h2 class="text-2xl">Fitur :</h2>
           <ol class="list-decimal list-inside mb-4">

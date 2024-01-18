@@ -5,14 +5,14 @@
             <h3 class="text-2xl">{{ city.state }}</h3>
         </div>
         <div class="flex flex-col gap-2">
-            <p class="text-3xl self-end">{{ FahrenheitToCelsius(Math.round(city.weather.main.temp)) }}&deg;</p>
+            <p class="text-3xl self-end">{{ FahrenheitToCelsius(Math.round(city.weather.main.temp)) }}&deg;C</p>
 
         <div class="flex gap-2">
             <span class="text-xs">
-                Tertinggi : {{ FahrenheitToCelsius(Math.round(city.weather.main.temp_max)) }}&deg;
+                Tertinggi : {{ FahrenheitToCelsius(Math.round(city.weather.main.temp_max)) }}&deg;C
             </span>
             <span class="text-xs">
-                Terendah : {{ FahrenheitToCelsius(Math.round(city.weather.main.temp_min)) }}&deg;
+                Terendah : {{ FahrenheitToCelsius(Math.round(city.weather.main.temp_min)) }}&deg;C
             </span>
         </div>
     </div>
