@@ -33,7 +33,7 @@
         {{ FahrenheitToCelsius(Math.round(weatherData.current.temp)) }}&deg;
       </p>
       <p>
-        Terasa Seperti
+        Berawan
         {{ FahrenheitToCelsius(Math.round(weatherData.current.feels_like)) }}&deg;
       </p>
       <img
@@ -120,7 +120,14 @@
     </div>
 
     <!-- cuaca mingguan end -->
+    <!-- hapus kota favorit start -->
+    <div class="flex items-center gap-2 py-12 text-white cursor-pointer duration-150 hover:text-red-500" @click="removeCity">
+      <i class="fa-solid fa-trash" >
+      </i>
+      <p>Hapus Kota</p>
+    </div>
 
+    <!-- hapus kota favorit end-->
 
 
 </div>
@@ -129,13 +136,13 @@
 
 <script setup>
 import axios from 'axios';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 
 const FahrenheitToCelsius = (temp) => {
   return (((temp - 32) * 5) / 9).toFixed(0);
 }
 const route = useRoute();
-
+const router = useRouter();
 const getWeatherData = async () => {
     try {
         const weatherData = await axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${route.query.lat}&lon=${route.query.lng}&exclude={part}&appid=7efa332cf48aeb9d2d391a51027f1a71&units=imperial`)
@@ -152,6 +159,8 @@ const getWeatherData = async () => {
         utc + 1000 * weatherData.data.timezone_offset;
     });
 
+    await new Promise(resolve => setTimeout(resolve, 1000))
+
     return weatherData.data;
     } catch (error) {
         console.log(error);
@@ -160,4 +169,12 @@ const getWeatherData = async () => {
 }
 const weatherData = await getWeatherData();
 console.log(weatherData);
+
+const removeCity = () => {
+    const current= JSON.parse(localStorage.getItem("savedCities"));
+    const filteredCity = current.filter((city) => city.id !== route.query.id);
+    localStorage.setItem("savedCities", JSON.stringify(filteredCity));
+    router.push({ name: "home" });
+}
+
 </script>

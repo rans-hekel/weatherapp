@@ -18,7 +18,7 @@
     <Suspense>
       <CityList />
       <template #fallback>
-        <div>Loading...</div>
+        <CityCardSkeleton />
       </template>
     </Suspense>
   </div>
@@ -33,6 +33,7 @@ import { ref } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
 import CityList from '@/components/CityList.vue';
+import CityCardSkeleton from '@/components/CityCardSkeleton.vue';
 
 const router = useRouter();
 const searchQuery = ref('');
@@ -40,7 +41,7 @@ const searchError = ref(null);
 const queryTimeout = ref(null);
 const mapboxSearchResults = ref(null);
 const mapboxAPIKey =
-  "Your Api Key Here";
+  "Your Api Key";
 
 
 
