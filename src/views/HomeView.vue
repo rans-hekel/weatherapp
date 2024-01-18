@@ -18,7 +18,7 @@
     <Suspense>
       <CityList />
       <template #fallback>
-        <CityCardSkeleton />
+        <CityCardSkeleton v-for="n in 3" :key="n" />
       </template>
     </Suspense>
   </div>
@@ -41,7 +41,7 @@ const searchError = ref(null);
 const queryTimeout = ref(null);
 const mapboxSearchResults = ref(null);
 const mapboxAPIKey =
-  "Your Api Key";
+  "Your Mapbox API Key";
 
 
 

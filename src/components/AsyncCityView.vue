@@ -2,7 +2,12 @@
 <div class="flex flex-col flex-1 items-center text-white">
     <!-- banner start -->
     <div v-if="route.query.preview" class="text-white p-4 bg-weather-accent w-full text-center">
-    <p>Kota ini sekarang dipreview dengan fitur favoritmu 
+    <p>
+    Click + untuk tambahkan ke favorit, Enjoy! #Rangga
+    </p>
+    </div>
+    <div v-if="route.query.id" class="text-white p-4 bg-green-500 w-full text-center">
+    <p>Kota Ini Adalah Kota Favoritmu #Rangga
     </p>
     </div>
     <!-- banner end -->
@@ -121,10 +126,10 @@
 
     <!-- cuaca mingguan end -->
     <!-- hapus kota favorit start -->
-    <div class="flex items-center gap-2 py-12 text-white cursor-pointer duration-150 hover:text-red-500" @click="removeCity">
+    <div v-if="route.query.id" class="flex items-center gap-2 py-12 text-white cursor-pointer duration-150 hover:text-red-500" @click="removeCity">
       <i class="fa-solid fa-trash" >
       </i>
-      <p>Hapus Kota</p>
+      <p>Hapus Kota favorit</p>
     </div>
 
     <!-- hapus kota favorit end-->

@@ -33,10 +33,13 @@
           </ol>
 
           <h2 class="text-2xl">Menghapus favorit :</h2>
-          <p>
+          <p class="mb-4">
             Untuk menghapus favorit, klik tombol hapus
             pada kota favorit
           </p>
+          <hr>
+          <h2 class="text-2xl">Programmer :</h2>
+          <p>Rangga-kun</p>
         </div>
         </BaseModal>
        </nav>
@@ -65,6 +68,7 @@ const addCity = () => {
       lng: route.query.lng,
     }
   }
+
 
   savedCities.value.push(locationObject);
   localStorage.setItem("savedCities", JSON.stringify(savedCities.value));
